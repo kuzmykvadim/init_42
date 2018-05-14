@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#Write a script which monitors the modifications made to the /etc/crontab file and
+#sends an e-mail to root if the file is modified. Create a scheduled task to run this
+#script everyday at midnight.
+
+
+NEWCRON=`md5sum /etc/crontab | cut -d " " -f1`
+
+if [ -e "$HOME/.md5cron" ]
+then
+	read -r line < $HOME/.md5cron
+	if [ "$line" != "$NEWCRON" ]
+	then
+		echo "Hello /etc/crontab was change !" | mail -s "Changes in /etc/crontab" root
+		md5sum /etc/crontab | cut -d " " -f1 > $HOME/.md5cron
+	fi
+else
+	ls ~
+	touch $HOME/.md5cron
+	md5sum /etc/crontab | cut -d " " -f1 > $HOME/.md5cron
+fi

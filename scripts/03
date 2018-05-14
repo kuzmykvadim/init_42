@@ -1,0 +1,7 @@
+#Write a script which displays the list of files from the folder given as parameter, sorted by size.
+
+#!/bin/bash
+for FILE1 in "$@"
+do
+ls -l $FILE1
+done

@@ -1,0 +1,12 @@
+#Figure out the server type.
+
+nslookup 10.51.1.253
+----
+Server:		10.51.1.253
+Address:	10.51.1.253#53
+
+253.1.51.10.in-addr.arpa	name = ns1.unit.ua.
+----
+Any time you see a URL address with an NS1 prefix, you're actually seeing the primary name server address. Typically, you don't see these address entries outside of a domain name system's list of entries. All domain names have at least two name servers in place, typically designated with an NS prefix. The primary server is generally designated NS1, as it is the first and main server. 
+
+Answer: There is UNIT primary Name Server

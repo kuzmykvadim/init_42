@@ -1,0 +1,5 @@
+Get the complete path of the file that contains the IP address of the DNS server
+you’re using
+0. /etc/resolv.conf - path of the file that contains the IP address of the DNS server
+1. cat /etc/resolv.conf | grep 'nameserver' | awk '{print $2}'  -- you can see your DNS
+2. scutil --dns | grep 'nameserver' -- you also cat see your DNS

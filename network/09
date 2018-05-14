@@ -1,0 +1,7 @@
+#Find the external IP of 42.fr
+
+163.172.250.11
+163.172.250.12
+163.172.250.13
+
+#command: nslookup 42.fr | grep "Address: " | awk '{print $2}'

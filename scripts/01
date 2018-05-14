@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#Write a script which displays only the login, UID and Path of each entry of the /etc/passwd file
+
+# seven fields from /etc/passwd stored in $f1,f2...,$f7
+# 
+while IFS=: read -r f1 f2 f3 f4 f5 f6 f7
+do 
+ echo "$f1 $f3 $f6"
+done < /etc/passwd

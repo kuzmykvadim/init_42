@@ -1,0 +1,2 @@
+#Identify the MAC address of the Bluetooth PAN
+system_profiler SPBluetoothDataType | sed -n "/Apple Bluetooth Software Version\:/,/Manufacturer\:/p" | egrep -o '([[:xdigit:]]{1,2}-){5}[[:xdigit:]]{1,2}'

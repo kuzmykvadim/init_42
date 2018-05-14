@@ -1,0 +1,4 @@
+# With the previous command, forbid all others
+iptables -I INPUT ! -s 10.0.0.0/8 -j DROP
+
+#The below rule will allow only your IP and Block all other IPs

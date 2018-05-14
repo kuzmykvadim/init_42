@@ -1,0 +1,5 @@
+#Make the intra.42.fr address reroute to 46.19.122.85
+We need add this address to the local DNS entries
+
+Use: echo "46.19.122.85   intra.42.fr" >> /etc/hosts
+, or edit file etc/hosts via texteditor
