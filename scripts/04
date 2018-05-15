@@ -5,18 +5,14 @@
 #script everyday at midnight.
 
 
-NEWCRON=`md5sum /etc/crontab | cut -d " " -f1`
+MD5SUM='cat /root/crontabsum'
+NEWSUM='md5sum /etc/crontab | cut -d " " -f 1'
 
-if [ -e "$HOME/.md5cron" ]
+if [ "$MD5SUM" != "$NEWSUM" ]
 then
-	read -r line < $HOME/.md5cron
-	if [ "$line" != "$NEWCRON" ]
-	then
-		echo "Hello /etc/crontab was change !" | mail -s "Changes in /etc/crontab" root
-		md5sum /etc/crontab | cut -d " " -f1 > $HOME/.md5cron
-	fi
-else
-	ls ~
-	touch $HOME/.md5cron
-	md5sum /etc/crontab | cut -d " " -f1 > $HOME/.md5cron
+	md5sum /etc/crontab | cut -d " " -f 1 > /root/crontabsum
+	mail -s "The file crontab was modified" root@localhost.com < /etc/crontab
 fi
+
+# From create scheduled task to run script, add next line line to /etc/crontab:
+# 0 0    0 * 0-6   root    sh /root/crontab_check.sh
