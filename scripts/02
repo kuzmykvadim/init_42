@@ -5,7 +5,6 @@
 #task for this script, once per week at 4 AM.
 
 
-# insert in crontab -e
-# 0 4 * * 1 /bin/bash /path/to/script/
+# insert in etc/crontab:   0 4 * * 1 /bin/bash /path/to/script/
 apt-get update >> /var/log/update_script.log
 apt-get upgrade -y >> /var/log/update_script.log

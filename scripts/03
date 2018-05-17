@@ -3,5 +3,5 @@
 #!/bin/bash
 for FILE1 in "$@"
 do
-ls -l $FILE1
+ls -S -l $FILE1
 done

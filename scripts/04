@@ -2,17 +2,16 @@
 
 #Write a script which monitors the modifications made to the /etc/crontab file and
 #sends an e-mail to root if the file is modified. Create a scheduled task to run this
-#script everyday at midnight.
+#script everyday at midnight
 
 
-MD5SUM='cat /root/crontabsum'
-NEWSUM='md5sum /etc/crontab | cut -d " " -f 1'
-
-if [ "$MD5SUM" != "$NEWSUM" ]
+if [ ! -f $HOME/crontab.md5  ]
 then
-	md5sum /etc/crontab | cut -d " " -f 1 > /root/crontabsum
-	mail -s "The file crontab was modified" root@localhost.com < /etc/crontab
+	md5sum /etc/crontab > $HOME/crontab.md5
+elif ! md5sum -c $HOME/crontab.md5
+then
+	echo "/etc/crontab changed" | mail -s "/etc/crontab was changed !!!!!" root
+	md5sum /etc/crontab > $HOME/crontab.md5
 fi
 
-# From create scheduled task to run script, add next line line to /etc/crontab:
-# 0 0    0 * 0-6   root    sh /root/crontab_check.sh
+# From create scheduled task to run script, add : "0 0 * * * root /path/to/script" to /etc/crontab
